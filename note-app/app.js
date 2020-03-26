@@ -1,3 +1,4 @@
-const fs = require('fs');
-
-fs.writeFileSync('readme.md', '### NodeJS Practise Course');
+const fn = require('./update-readme');
+const {getNote} = require('./note');
+fn();
+getNote();
