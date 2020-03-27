@@ -1,21 +1,46 @@
 const validator = require("validator");
 const chalk = require("chalk");
-// const argumentVectors = process.argv;
-const yargs = require('yargs');
+const fs = require('fs');
+const yargs = require('yargs'); // const argumentVectors = process.argv;
 
 // console.log('Hello world is working!!', validator.isEmail('sumit@fusioncharts.com'), argumentVectors[2])
-const note = []
+// const note = []
+// note.push({
+//     id: note.length,
+//     title: yargs.argv.title,
+//     content: ''
+// })
+const sampleData = [{
+    title: "First Note",
+    author: "sumit pal",
+    body: "Test"
+}]
+fs.writeFileSync('./note-app/note-data.json', JSON.stringify(sampleData))
+const NodeData = fs.readFileSync('./note-app/note-data.json');
+const parsedData = JSON.parse(NodeData.toString());
+// changes
+parsedData[0].title = "Sample Note - 1"
+
+console.log(parsedData);
+fs.writeFileSync('./note-app/note-data.json', JSON.stringify(parsedData))
 
 yargs.command({
     command: 'add',
     describe: 'Add a note',
-    handler: function () {
-        console.log('Adding note -', chalk.red(yargs.argv.title))
-        note.push({
-            id: note.length,
-            title: yargs.argv.title,
-            content: ''
-        })
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: "string"
+        },
+        body: {
+            describe: 'Note Body',
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        console.log(`${chalk.yellow.bold(argv.title.toUpperCase())}\n${chalk.white(argv.body)}`)
     }
 })
 
@@ -35,4 +60,6 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv,  note)
+// console.log(note)
+
+yargs.parse()
