@@ -1,29 +1,6 @@
-const validator = require("validator");
-const chalk = require("chalk");
 const yargs = require("yargs"); // const argumentVectors = process.argv;
 const notes = require("./note-app/note");
-// const fs = require('fs');
 
-// console.log('Hello world is working!!', validator.isEmail('sumit@fusioncharts.com'), argumentVectors[2])
-// const note = []
-// note.push({
-//     id: note.length,
-//     title: yargs.argv.title,
-//     content: ''
-// })
-// const sampleData = [{
-//     title: "First Note",
-//     author: "sumit pal",
-//     body: "Test"
-// }]
-// fs.writeFileSync('./note-app/note-data.json', JSON.stringify(sampleData))
-// const NodeData = fs.readFileSync('./note-app/note-data.json');
-// const parsedData = JSON.parse(NodeData.toString());
-// // changes
-// parsedData[0].title = "Sample Note - 1"
-
-// console.log(parsedData);
-// fs.writeFileSync('./note-app/note-data.json', JSON.stringify(parsedData))
 
 yargs.command({
   command: "add",
