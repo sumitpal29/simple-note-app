@@ -48,7 +48,6 @@ const deleteNote = title => {
     saveNotes(filteredNotes);
     console.log(`note - title : ${title} , deleted!!!`);
   } else console.log("No notes found");
-  // matched(notes, title).length ? deleteCallback : console.log('Title already taken', matched.length)
 };
 
 const search = title => {
