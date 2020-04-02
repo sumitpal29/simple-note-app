@@ -48,6 +48,20 @@ yargs.command({
   }
 });
 
-// console.log(note)
+yargs.command({
+  command: "search",
+  describe: "search a note by title",
+  builder: {
+    title: {
+      demandOption: true,
+      type: "string",
+      describe: "search by title"
+    }
+  },
+  handler: function(argv) {
+    notes.search(argv.title);
+  }
+});
+
 
 yargs.parse();

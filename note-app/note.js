@@ -26,18 +26,11 @@ const saveNotes = dataArr => {
   fs.writeFileSync("notes.json", stringyfied);
 };
 
-const matched = (notes, title, cb) =>
-  notes.filter((item, index) => {
-    if (item.title === title) {
-      cb && cb(index);
-      return true;
-    }
-    return false;
-  });
+const matched = (notes, title) => notes.find(item => item.title === title);
 
 const addNote = ({ title, body }) => {
   const notes = loadNotes();
-  if (matched(notes, title).length === 0) {
+  if (!matched(notes, title)) {
     notes.push({ title, body });
     saveNotes(notes);
   } else console.log("Title already taken", matched.length);
@@ -58,8 +51,14 @@ const deleteNote = title => {
   // matched(notes, title).length ? deleteCallback : console.log('Title already taken', matched.length)
 };
 
+const search = title => {
+  const notes = loadNotes();
+  console.log(matched(notes, title).body)
+}
+
 module.exports = {
   getNote,
   addNote,
-  deleteNote
+  deleteNote,
+  search
 };
